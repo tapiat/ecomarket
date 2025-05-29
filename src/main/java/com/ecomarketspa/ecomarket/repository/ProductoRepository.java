@@ -13,7 +13,7 @@ public class ProductoRepository {
 
     public ProductoRepository() {
         listaProductos = new ArrayList<>();
-        listaProductos.add(new Producto("001","Tierra de Hoja",
+        listaProductos.add(new Producto("P001","Tierra de Hoja",
                 "sustrato natural perfecto para crear un césped vibrante y saludable."
                 ,6290));
     }
