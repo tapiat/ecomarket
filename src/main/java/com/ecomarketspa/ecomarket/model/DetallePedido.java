@@ -11,14 +11,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Inventario {
+public class DetallePedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String codigo;
-    private String nombre;
     private int cantidad;
-    private String ubicacion;
+    private int precioUnitario;
+
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
+    @ManyToOne
+    @JoinColumn(name = "producto_codigo")
+    private Producto producto;
 }

@@ -6,19 +6,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-public class Inventario {
+public class Envio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String codigo;
-    private String nombre;
-    private int cantidad;
-    private String ubicacion;
+    private LocalDate fechaEnvio;
+
+    private String estado;
+
+    private String direccion;
+
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
 }
