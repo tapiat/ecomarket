@@ -11,12 +11,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Inventario {
+public class Rol {
 
     @Id
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String nombre;
-    private int cantidad;
-    private String ubicacion;
 }

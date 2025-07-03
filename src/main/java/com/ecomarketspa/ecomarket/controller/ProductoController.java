@@ -3,6 +3,7 @@ package com.ecomarketspa.ecomarket.controller;
 import com.ecomarketspa.ecomarket.model.Producto;
 import com.ecomarketspa.ecomarket.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class ProductoController {
         if (producto != null) {
             return ResponseEntity.ok(producto);
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
@@ -42,7 +43,7 @@ public class ProductoController {
         if (actualizado) {
             return ResponseEntity.ok("Producto actualizado con éxito.");
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado.");
         }
     }
 

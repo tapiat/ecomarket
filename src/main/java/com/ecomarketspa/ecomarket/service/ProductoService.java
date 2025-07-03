@@ -10,24 +10,34 @@ import java.util.List;
 @Service
 public class ProductoService {
     @Autowired
-    private ProductoRepository repository;
+    private ProductoRepository productoRepository;
+
     public List<Producto> getProducts() {
-        return repository.getAll();
+        return productoRepository.findAll();
     }
 
     public Producto getProductByCodigo(String codigo) {
-        return repository.getByCodigo(codigo);
+        return productoRepository.findById(codigo).orElse(null);
     }
 
     public Producto addProduct(Producto producto) {
-        return repository.save(producto);
+        return productoRepository.save(producto);
     }
 
     public boolean updateProduct(String codigo, Producto producto) {
-        return repository.update(codigo, producto);
+        if (productoRepository.existsById(codigo)) {
+            producto.setCodigo(codigo); // Aseguramos que el ID sea el mismo
+            productoRepository.save(producto);
+            return true;
+        }
+        return false;
     }
 
     public boolean deleteProduct(String codigo) {
-        return repository.delete(codigo);
+        if (productoRepository.existsById(codigo)) {
+            productoRepository.deleteById(codigo);
+            return true;
+        }
+        return false;
     }
 }
