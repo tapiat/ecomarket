@@ -11,24 +11,34 @@ import java.util.List;
 public class InventarioService {
 
     @Autowired
-    private InventarioRepository repository;
+    private InventarioRepository inventarioRepository;
+
     public List<Inventario> getAllInventario() {
-        return repository.getAll();
+        return inventarioRepository.findAll();
     }
 
     public Inventario getInventarioByCodigo(String codigo) {
-        return repository.getByCodigo(codigo);
+        return inventarioRepository.findById(codigo).orElse(null);
     }
 
     public Inventario addInventory(Inventario inventario) {
-        return repository.save(inventario);
+        return inventarioRepository.save(inventario);
     }
 
-    public boolean updateInventory(String codigo, Inventario inventario) {
-        return repository.update(codigo, inventario);
+    public boolean updateInventory(String codigo, Inventario nuevoInventario) {
+        if (inventarioRepository.existsById(codigo)) {
+            nuevoInventario.setCodigo(codigo);
+            inventarioRepository.save(nuevoInventario);
+            return true;
+        }
+        return false;
     }
 
     public boolean deleteInventory(String codigo) {
-        return repository.delete(codigo);
+        if (inventarioRepository.existsById(codigo)) {
+            inventarioRepository.deleteById(codigo);
+            return true;
+        }
+        return false;
     }
 }

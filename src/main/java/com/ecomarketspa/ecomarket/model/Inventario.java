@@ -14,10 +14,8 @@ import lombok.Setter;
 public class Inventario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String codigo;
+
     private String nombre;
     private int cantidad;
     private String ubicacion;

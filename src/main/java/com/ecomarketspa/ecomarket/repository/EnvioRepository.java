@@ -1,12 +1,9 @@
 package com.ecomarketspa.ecomarket.repository;
 
-import com.ecomarketspa.ecomarket.model.Inventario;
+import com.ecomarketspa.ecomarket.model.Envio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InventarioRepository extends JpaRepository<Inventario, String> {
-
+public interface EnvioRepository extends JpaRepository<Envio, Long> {
 }
-
-
